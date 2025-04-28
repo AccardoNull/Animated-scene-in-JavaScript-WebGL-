@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<script id="vertex-shader" type="x-shader/x-vertex">#version 300 es
+
+    in vec4 vPosition;
+    in vec3 vNormal;
+    in vec2 vTexCoord;
+    
+    out vec3 fragPos;
+    out vec3 fragNormal;
+    out vec2 fTexCoord;
+    
+    uniform mat4 modelViewMatrix;
+    uniform mat4 normalMatrix;
+    uniform mat4 projectionMatrix;
+    
+    void main() {
+        // Transform position and normal to eye space
+        fragPos = (modelViewMatrix * vPosition).xyz;
+        fragNormal = normalize((normalMatrix * vec4(vNormal, 0.0)).xyz);
+        
+        // Pass texture coordinates
+        fTexCoord = vTexCoord;
+        
+        // Compute final position
+        gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+    }
+    
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">#version 300 es
+
+    precision mediump float;
+    
+    uniform sampler2D texture1;
+    uniform int useTextures;
+    
+    uniform vec4 ambientProduct, diffuseProduct, specularProduct;
+    uniform vec4 lightPosition;
+    uniform float shininess;
+    
+    // New uniforms for glow effect
+    uniform vec4 glowColor;   // Color of the glow
+    uniform float glowIntensity; // Glow strength
+    
+    in vec3 fragPos;
+    in vec3 fragNormal;
+    in vec2 fTexCoord;
+    
+    layout(location=0) out vec4 fragColor;
+    
+    void main() {
+        // Normalize interpolated normal
+        vec3 N = normalize(fragNormal);
+        
+        // Compute light direction
+        vec3 L = normalize(lightPosition.xyz - fragPos);
+        
+        // Compute view direction
+        vec3 V = normalize(-fragPos);
+        
+        // Compute halfway vector (Blinn-Phong)
+        vec3 H = normalize(L + V);
+    
+        // Compute lighting components
+        float lightDotNormal = max(dot(L, N), 0.0);
+        vec4 diffuse = diffuseProduct * lightDotNormal;
+    
+        float specFactor = pow(max(dot(N, H), 0.0), shininess);
+        vec4 specular = specularProduct * specFactor;
+        
+        if (lightDotNormal <= 0.0) {
+            specular = vec4(0.0);
+        }
+    
+        // Fresnel Glow Effect (More glow at edges)
+        float fresnel = pow(1.0 - max(dot(N, V), 0.0), 3.0) * glowIntensity;
+    
+        // Final color with glow
+        vec4 lightingColor = ambientProduct + diffuse + specular;
+        lightingColor.a = 1.0;
+    
+        // Apply the glow effect
+        vec4 finalColor = lightingColor + glowColor * fresnel;
+    
+        // Apply textures if enabled
+        if (useTextures == 1) {
+            fragColor = texture(texture1, fTexCoord) * finalColor;
+        } else {
+            fragColor = finalColor;
+        }
+    }
+    
+</script>
+
+<script type="text/javascript" src="Common/webgl-utils.js"></script>
+<script type="text/javascript" src="Common/initShaders.js"></script>
+
+<script type="text/javascript" src="Common/MV.js"></script>
+<script type="text/javascript" src="objects.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+
+<br/>
+<br/>
+
+<div id="textureToggleButton">
+    <input id="textureToggleButtoni" type="button" value="Toggle Textures"/>
+</div>
+</body>
+</html>
