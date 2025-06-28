@@ -1,7 +1,7 @@
 # Animated-scene-in-JavaScript-WebGL-
  A program in JavaScript/WebGL that draws an animated scene, includes:
  
-one hierarchical object of at least three levels in the hierarchy, I implement an object made out of three levels, a white scaled cube connected to the body, a gold scaled cube with joint like connection to the previous one, least a white sphere at the end connected to the tail and move around with it. 
+one hierarchical object of at least three levels in the hierarchy: a white scaled cube connected to the main body, a gold scaled cube with joint like connection to the previous one, least a white sphere at the end connected to the tail and move around with it. 
 
 360-degree camera fly around using lookAt() and setMV() to move the camera, it circled around the center in a loop.
 
