@@ -14,3 +14,7 @@ Convert the ADS shader in the main.html from a vertex shader to a fragment shade
 Write and implement a glow effect with various colors on objects by editing fragment shader in main.html, and by implementing Emissive Lighting and Fresnel Effect.
 
 Included animated rotation for several objects' movements.
+
+Usage:
+
+Open main.html, then click the "textureToggleButton" to start the scene.
