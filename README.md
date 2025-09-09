@@ -1,5 +1,5 @@
 # Animated-scene-in-JavaScript-WebGL-
- A program in JavaScript/WebGL that draws an animated scene, includes:
+ A program that uses JavaScript to draw an animated scene, includes:
  
 one hierarchical object of at least three levels in the hierarchy: a white scaled cube connected to the main body, a gold scaled cube with joint like connection to the previous one, least a white sphere at the end connected to the tail and move around with it. 
 
