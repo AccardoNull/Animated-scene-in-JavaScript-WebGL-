@@ -1,7 +1,7 @@
 # Animated-scene-in-JavaScript-WebGL-
-Hosted on Github Pages, Link: https://accardonull.github.io/Animated-scene-in-JavaScript-WebGL-/
-
 Usage:
+
+- Hosted on Github Pages, Link: https://accardonull.github.io/Animated-scene-in-JavaScript-WebGL-/
 
 - Click the "textureToggleButton" to start the scene.
 
