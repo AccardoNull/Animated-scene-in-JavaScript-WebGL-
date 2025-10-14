@@ -1,7 +1,13 @@
 # Animated-scene-in-JavaScript-WebGL-
 Hosted on Github Pages, Link: https://accardonull.github.io/Animated-scene-in-JavaScript-WebGL-/
 
- A program that uses JavaScript to draw an animated scene, includes:
+Usage:
+
+Click the "textureToggleButton" to start the scene.
+
+Overview:
+
+A program that uses JavaScript to draw an animated scene, includes:
  
 one hierarchical object of at least three levels in the hierarchy: a white scaled cube connected to the main body, a gold scaled cube with joint like connection to the previous one, least a white sphere at the end connected to the tail and move around with it. 
 
@@ -16,7 +22,3 @@ Convert the ADS shader in the main.html from a vertex shader to a fragment shade
 Write and implement a glow effect with various colors on objects by editing fragment shader in main.html, and by implementing Emissive Lighting and Fresnel Effect.
 
 Included animated rotation for several objects' movements.
-
-Usage:
-
-Open main.html, then click the "textureToggleButton" to start the scene.
