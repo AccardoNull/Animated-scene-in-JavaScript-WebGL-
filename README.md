@@ -3,7 +3,7 @@ Usage:
 
 - Hosted on Github Pages, Link: https://accardonull.github.io/Animated-scene-in-JavaScript-WebGL-/
 
-- Click the "textureToggleButton" to start the scene.
+- Click the "Toggle Textures" button to start the scene.
 
 Overview:
 
